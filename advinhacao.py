@@ -7,10 +7,10 @@ def get_input_number(message):
             print("Tem que ser um numero!")
 
 
-def game_advinhacao():
+def game_advinhacao(random_number: int = None):
     import random
 
-    numero_secreto = random.randint(1, 10)
+    numero_secreto = random_number if random_number else random.randint(1, 10)
     print("Bem vindo ao jogo de adivinhação.")
     num = get_input_number("Digite: ")
     tries = 0
@@ -29,12 +29,12 @@ def game_advinhacao():
     if num == numero_secreto:
         print("Parabéns, você acertou!")
 
-    if tries == 4:
+    if tries == 5:
         print("Você errou, o número secreto era {}".format(numero_secreto))
 
-    user_response = input("Deseja jogar novamente? (S/N) ")
-    if user_response == "S":
-        game_advinhacao()
+    user_response = str(input("Deseja jogar novamente? (S/N) ")).lower()
+    if user_response == "s":
+        game_advinhacao(numero_secreto)
 
 
 if __name__ == "__main__":
